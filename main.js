@@ -17,9 +17,9 @@ async function main() {
       console.log(handlePassword(await io.ask("digite a string de teste\n")));
       break;
     case "3":
-        console.log(anagrams(await io.ask("digite a string de teste\n")));
+      console.log(anagrams(await io.ask("digite a string de teste\n")));
     default:
-        return;
+      return;
   }
 }
 

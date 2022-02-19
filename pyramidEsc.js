@@ -3,5 +3,4 @@ export default function pyramidEsc(number) {
         let space = number
         console.log(" ".repeat(space - i) + "*".repeat(i));
     }
-
 }

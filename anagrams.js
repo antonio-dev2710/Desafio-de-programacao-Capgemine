@@ -1,111 +1,108 @@
-export default function anagrams(palavra) {
-  let qtdanagramas = 0;
+export default function anagrams(word) {
+  let numberOfAnagrams = 0;
   for (
-    let indexLetraAtual = 0;
-    indexLetraAtual < palavra.length;
-    indexLetraAtual++
+    let currentLetterIndex = 0;
+    currentLetterIndex < word.length;
+    currentLetterIndex++
   ) {
-    qtdanagramas += anagramas(palavra, indexLetraAtual);
+    numberOfAnagrams += anagramas(word, currentLetterIndex);
   }
-  return qtdanagramas;
+  return numberOfAnagrams;
 }
 
-function anagramas(palavra, indexLetraAtual) {
-  let qtdanagramas = 0;
-  let qtdIgnorar = 0;
-  let temRepetida = true;
+function anagramas(word, currentLetterIndex) {
+  let numberOfAnagrams = 0;
+  let ignoredQuantity = 0;
+  let hasRepeated = true;
 
-  while (temRepetida) {
-    let proximoIndex = indexLetraRepetida(indexLetraAtual, palavra, qtdIgnorar);
-    if (proximoIndex !== -1) {
-      if (indexLetraAtual + 1 === proximoIndex) {
+  while (hasRepeated) {
+    let nextIndex = indexLetraRepetida(currentLetterIndex, word, ignoredQuantity);
+    if (nextIndex !== -1) {
+      if (currentLetterIndex + 1 === nextIndex) {
         //ovo
-        qtdanagramas++;
-        qtdIgnorar++;
+        numberOfAnagrams++;
+        ignoredQuantity++;
       } else {
-        qtdanagramas++;
-        let subString = palavra.substring(indexLetraAtual, proximoIndex + 1);
-        let qtdElementosEntreIndices = subString.length - 2;
+        numberOfAnagrams++;
+        let subString = word.substring(currentLetterIndex, nextIndex + 1);
+        let quantityElementsBetweenIndexes = subString.length - 2;
 
-        if (qtdElementosEntreIndices % 2 !== 0) {
-          // let letraMeio = subString[(subString.length-1)/2]
-          let primeiraMetade = subString.substring(
+        if (quantityElementsBetweenIndexes % 2 !== 0) {
+
+          let firstHalf = subString.substring(
             0,
             ((subString.length - 1) / 2) + 1
           );
-          let segundaMetade = subString.substring(
+          let secondHalf = subString.substring(
             (subString.length - 1) / 2,
             subString.length
           );
-          let qtdIncludes = 0;
+          let quantityIncludes = 0;
 
-          for (let index = 0; index < primeiraMetade.length; index++) {
-            if (segundaMetade.includes(primeiraMetade[index])) {
-              qtdIncludes++;
+          for (let index = 0; index < firstHalf.length; index++) {
+            if (secondHalf.includes(firstHalf[index])) {
+              quantityIncludes++;
             } else {
               break;
             }
           }
-          if (qtdIncludes === primeiraMetade.length) {
-            qtdanagramas++;
+          if (quantityIncludes === firstHalf.length) {
+            numberOfAnagrams++;
           }
 
-          qtdIgnorar++;
+          ignoredQuantity++;
         }
 
-        if (qtdElementosEntreIndices % 2 === 0) {
-          let primeiraMetade2 = subString.substring(0, subString.length / 2);
-          let segundaMetade2 = subString.substring(
+        if (quantityElementsBetweenIndexes % 2 === 0) {
+          let firstHalf2 = subString.substring(0, subString.length / 2);
+          let secondHalf2 = subString.substring(
             subString.length / 2 - 1,
             subString.length
           );
           let qtdIncludes2 = 0;
 
-          for (let index = 0; index < primeiraMetade2.length; index++) {
-            if (segundaMetade2.includes(primeiraMetade2[index])) {
+          for (let index = 0; index < firstHalf2.length; index++) {
+            if (secondHalf2.includes(firstHalf2[index])) {
               qtdIncludes2++;
             } else {
               break;
             }
           }
-          if (qtdIncludes2 === primeiraMetade2.length) {
-            qtdanagramas++;
+          if (qtdIncludes2 === firstHalf2.length) {
+            numberOfAnagrams++;
           }
 
-          qtdIgnorar++;
+          ignoredQuantity++;
         }
       }
     } else {
-      temRepetida = false;
+      hasRepeated = false;
     }
   }
-  return qtdanagramas;
+  return numberOfAnagrams;
 }
 
-// retorna o próximo índice da letra repetida
-// se não houver (mais) letra repetida ou qtdIgnorar===palavra.length-1 retorna -1
-function indexLetraRepetida(indexLetraAtual, palavra, qtdIgnorar) {
-  if (qtdIgnorar === palavra.length - 1) {
+function indexLetraRepetida(currentLetterIndex, word, ignoredQuantity) {
+  if (ignoredQuantity === word.length - 1) {
     return -1;
   }
   if (
-    !palavra.substring(indexLetraAtual + 1).includes(palavra[indexLetraAtual])
+    !word.substring(currentLetterIndex + 1).includes(word[currentLetterIndex])
   ) {
     return -1;
   }
 
-  let palavraAPartirDoIndex = palavra.substring(indexLetraAtual);
-  const letraProcurando = palavraAPartirDoIndex[0];
+  let wordFromIndex = word.substring(currentLetterIndex);
+  const lookingForLetter = wordFromIndex[0];
 
-  for (let i = 1; i < palavraAPartirDoIndex.length; i++) {
-    if (letraProcurando === palavraAPartirDoIndex[i]) {
-      if (qtdIgnorar > 0) {
-        qtdIgnorar--;
+  for (let i = 1; i < wordFromIndex.length; i++) {
+    if (lookingForLetter === wordFromIndex[i]) {
+      if (ignoredQuantity > 0) {
+        ignoredQuantity--;
       } else {
-        return i + indexLetraAtual;
+        return i + currentLetterIndex;
       }
     }
   }
-
   return -1;
 }

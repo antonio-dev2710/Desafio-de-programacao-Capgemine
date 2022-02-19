@@ -3,10 +3,10 @@ export default function handlePassword(password) {
     return 6 - password.length;
   }
 
-  const letrasMaiusculas = /[A-Z]/;
-  const letrasMinusculas = /[a-z]/;
+  const capitalLetters = /[A-Z]/;
+  const smallLetters = /[a-z]/;
   const numeroString = /[0-9]/;
-  const special = /[!|@|#|$|%|^|&|*|(|)|-]/;
+  const specialCcharacter = /[!|@|#|$|%|^|&|*|(|)|-]/;
 
   let numberToStrong = 0;
   let hasUpperCase = false;
@@ -15,11 +15,11 @@ export default function handlePassword(password) {
   let hasNumber = false;
 
   for (let i = 0; i < password.length; i++) {
-    if (letrasMaiusculas.test(password[i])) {
+    if (capitalLetters.test(password[i])) {
       hasUpperCase = true;
     }
 
-    if (letrasMinusculas.test(password[i])) {
+    if (smallLetters.test(password[i])) {
       hasLowerCase = true;
     }
 
@@ -27,7 +27,7 @@ export default function handlePassword(password) {
       hasNumber = true;
     }
 
-    if (special.test(password[i])) {
+    if (specialCcharacter.test(password[i])) {
       hasSpecial = true;
     }
   }
