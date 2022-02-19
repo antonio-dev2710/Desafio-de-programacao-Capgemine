@@ -6,7 +6,7 @@
 
 1. **Primeiro instale as dependências**:
    - npm install ou yarn install.
-2. **Para executar o sistema basta executar o comando abaixo** :
+2. **Para executar o sistema basta aplicar o comando abaixo** :
    - node main.js
 
 - tecnologias utilizadas:
