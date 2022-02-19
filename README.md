@@ -1,9 +1,5 @@
-# Desafio-de-programacao-Capgemine
-------
 
- 
-
-##  **Desafio de programação**  💻:
+##  **Desafio de programação Capgemini**  💻:
 
 - Instruções de como rodar a aplicação:
   - [ ] Configuração do ambiente: node: ^17 yarn: ^1.22.17 ou npm 8.3.1
