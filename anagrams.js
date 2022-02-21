@@ -1,4 +1,4 @@
-export default function checkAnagrams(word) {
+export default function anagrams(word) {
   let numberOfAnagrams = 0;
   for (
     let currentLetterIndex = 0;

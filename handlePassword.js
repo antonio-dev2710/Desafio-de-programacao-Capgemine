@@ -1,4 +1,4 @@
-export default function analyzePassword(password) {
+export default function handlePassword(password) {
   if (password.length < 6) {
     return 6 - password.length;
   }
