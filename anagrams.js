@@ -5,12 +5,12 @@ export default function anagrams(word) {
     currentLetterIndex < word.length;
     currentLetterIndex++
   ) {
-    numberOfAnagrams += anagramas(word, currentLetterIndex);
+    numberOfAnagrams += anagramsSearch(word, currentLetterIndex);
   }
   return numberOfAnagrams;
 }
 
-function anagramas(word, currentLetterIndex) {
+function anagramsSearch(word, currentLetterIndex) {
   let numberOfAnagrams = 0;
   let ignoredQuantity = 0;
   let hasRepeated = true;
